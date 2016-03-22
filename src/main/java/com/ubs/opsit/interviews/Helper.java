@@ -20,13 +20,12 @@ public class Helper {
 		return split;
 	}
 
-	private static boolean validateInputDate(String inputDate) {
+	private static void validateInputDate(String inputDate) {
 		final Pattern pattern = Pattern.compile("(?m)^(\\d\\d:\\d\\d:\\d\\d)");
 		final Matcher matcher = pattern.matcher(inputDate);
 		if (!matcher.find()) {
 			throw new IllegalArgumentException("Incorrect input date, please input in a format hh:mm:ss");
 		}
-		return matcher.find();
 	}
 
 	static int[] getTopBottomTimeValues(int time) {

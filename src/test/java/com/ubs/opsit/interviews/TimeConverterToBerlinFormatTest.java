@@ -3,11 +3,16 @@ package com.ubs.opsit.interviews;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class TimeConverterToBerlinFormatTest {
 	TimeConverterToBerlinFormat timeConvertor;
 	String lineSeparator;
+
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	@Before
 	public void setUp() throws Exception {
@@ -41,7 +46,10 @@ public class TimeConverterToBerlinFormatTest {
 				+ lineSeparator + "OOOO", timeConvertor.convertTime("00:00:00"));
 		assertEquals("Y" + lineSeparator + "RRRO" + lineSeparator + "RRRR" + lineSeparator + "YYRYYRYOOOO"
 				+ lineSeparator + "YOOO", timeConvertor.convertTime("19:36:00"));
-		System.out.println(timeConvertor.convertTime("09:36:00"));
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Incorrect input date, please input in a format hh:mm:ss");
+		timeConvertor.convertTime("k9:36:00");
+
 	}
 
 }
