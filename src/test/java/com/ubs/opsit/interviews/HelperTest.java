@@ -4,9 +4,14 @@ import static org.junit.Assert.*;
 
 import java.util.Optional;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class HelperTest {
+
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	@Test
 	public void testConvertToBerlinForamtHelper() {
@@ -33,6 +38,13 @@ public class HelperTest {
 		Assert.assertArrayEquals(new int[] { 3, 4 }, Helper.getTopBottomTimeValues(19));
 		Assert.assertArrayEquals(new int[] { 11, 4 }, Helper.getTopBottomTimeValues(59));
 
+	}
+
+	@Test
+	public void testValidateInputDate() {
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Incorrect input date, please input in a format hh:mm:ss");
+		Helper.validateInputDate("1:36:00");
 	}
 
 }

@@ -4,7 +4,12 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Helper {
+	static final Logger LOG = LoggerFactory.getLogger(TimeConverterToBerlinFormat.class);
+
 	static String convertToBerlinForamtHelper(String prefix, String suffux, Optional<String> minutesTop, int limit) {
 		StringBuilder toBerlinFormat = new StringBuilder(prefix);
 		for (int i = 0; i < limit; i++) {
@@ -15,15 +20,15 @@ public class Helper {
 	}
 
 	static String[] getTime(String inputDate) {
-		validateInputDate(inputDate);
 		String[] split = inputDate.split(":");
 		return split;
 	}
 
-	private static void validateInputDate(String inputDate) {
+	static void validateInputDate(String inputDate) {
 		final Pattern pattern = Pattern.compile("^([0-1]\\d|2[0-4]):([0-5]\\d):([0-5]\\d)$");
 		final Matcher matcher = pattern.matcher(inputDate);
 		if (!matcher.find()) {
+			LOG.error("Incorrect input date detected, please input a date in a format hh:mm:ss");
 			throw new IllegalArgumentException("Incorrect input date, please input in a format hh:mm:ss");
 		}
 	}
