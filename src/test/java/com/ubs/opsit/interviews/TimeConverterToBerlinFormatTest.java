@@ -41,6 +41,7 @@ public class TimeConverterToBerlinFormatTest {
 				+ lineSeparator + "OOOO", timeConvertor.convertTime("00:00:00"));
 		assertEquals("Y" + lineSeparator + "RRRO" + lineSeparator + "RRRR" + lineSeparator + "YYRYYRYOOOO"
 				+ lineSeparator + "YOOO", timeConvertor.convertTime("19:36:00"));
+		System.out.println(timeConvertor.convertTime("09:36:00"));
 	}
 
 }

@@ -15,18 +15,18 @@ public class Helper {
 	}
 
 	static String[] getTime(String inputDate) {
+		validateInputDate(inputDate);
+		String[] split = inputDate.split(":");
+		return split;
+	}
+
+	private static boolean validateInputDate(String inputDate) {
 		final Pattern pattern = Pattern.compile("(?m)^(\\d\\d:\\d\\d:\\d\\d)");
 		final Matcher matcher = pattern.matcher(inputDate);
-
 		if (!matcher.find()) {
 			throw new IllegalArgumentException("Incorrect input date, please input in a format hh:mm:ss");
 		}
-
-		while (matcher.find()) {
-			System.out.printf("[%s]\n", matcher.group(1));
-		}
-		String[] split = inputDate.split(":");
-		return split;
+		return matcher.find();
 	}
 
 	static int[] getTopBottomTimeValues(int time) {
