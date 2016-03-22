@@ -34,5 +34,4 @@ public class Helper {
 		topBottomTimeValues[1] = (int) time % 5;
 		return topBottomTimeValues;
 	}
-
 }
