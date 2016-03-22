@@ -1,6 +1,8 @@
 package com.ubs.opsit.interviews;
 
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Helper {
 	static String convertToBerlinForamtHelper(String prefix, String suffux, Optional<String> minutesTop, int limit) {
@@ -13,11 +15,21 @@ public class Helper {
 	}
 
 	static String[] getTime(String inputDate) {
+		final Pattern pattern = Pattern.compile("(?m)^(\\d\\d:\\d\\d:\\d\\d)");
+		final Matcher matcher = pattern.matcher(inputDate);
+
+		if (!matcher.find()) {
+			throw new IllegalArgumentException("Incorrect input date, please input in a format hh:mm:ss");
+		}
+
+		while (matcher.find()) {
+			System.out.printf("[%s]\n", matcher.group(1));
+		}
 		String[] split = inputDate.split(":");
 		return split;
 	}
-	
-	static int[] getTopBottomTimeValues(int time){
+
+	static int[] getTopBottomTimeValues(int time) {
 		int[] topBottomTimeValues = new int[2];
 		topBottomTimeValues[0] = (int) Math.floor(time / 5);
 		topBottomTimeValues[1] = (int) time % 5;
