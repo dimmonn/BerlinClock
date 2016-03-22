@@ -5,9 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TimeConverterToBerlinFormat implements TimeConverter {
-	 static final Logger LOG = LoggerFactory.getLogger(TimeConverterToBerlinFormat.class);
+	static final Logger LOG = LoggerFactory.getLogger(TimeConverterToBerlinFormat.class);
 
-	 String getHours(int hours) {
+	String getHours(int hours) {
 		String lineSeparator = System.getProperty("line.separator");
 		int[] topBottomTime = Helper.getTopBottomTimeValues(hours);
 		String fiveHoursBerlin = Helper.convertToBerlinForamtHelper("OOOO", "R", Optional.empty(), topBottomTime[0]);
@@ -16,7 +16,7 @@ public class TimeConverterToBerlinFormat implements TimeConverter {
 		return fiveHoursBerlin + lineSeparator + oneHourBerlin + lineSeparator;
 	}
 
-	 String getMinutes(int minutes) {
+	String getMinutes(int minutes) {
 		String lineSeparator = System.getProperty("line.separator");
 		int[] topBottomTime = Helper.getTopBottomTimeValues(minutes);
 		String minutesBerlinTop = Helper.convertToBerlinForamtHelper("OOOOOOOOOOO", "Y", Optional.of("R"),

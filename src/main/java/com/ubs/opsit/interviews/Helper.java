@@ -21,7 +21,7 @@ public class Helper {
 	}
 
 	private static void validateInputDate(String inputDate) {
-		final Pattern pattern = Pattern.compile("^([0-1]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)$");
+		final Pattern pattern = Pattern.compile("^([0-1]\\d|2[0-4]):([0-5]\\d):([0-5]\\d)$");
 		final Matcher matcher = pattern.matcher(inputDate);
 		if (!matcher.find()) {
 			throw new IllegalArgumentException("Incorrect input date, please input in a format hh:mm:ss");
