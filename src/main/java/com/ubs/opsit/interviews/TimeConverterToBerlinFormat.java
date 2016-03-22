@@ -34,19 +34,14 @@ public class TimeConverterToBerlinFormat implements TimeConverter {
 
 	@Override
 	public String convertTime(String aTime) {
-
 		String[] timeSplit = Helper.getTime(aTime);
-
 		int hours = Integer.valueOf(timeSplit[0]);
 		int minutes = Integer.valueOf(timeSplit[1]);
 		int seconds = Integer.valueOf(timeSplit[2]);
-
 		StringBuilder builder = new StringBuilder();
-
 		builder.append(getSec(seconds));
 		builder.append(getHours(hours));
 		builder.append(getMinutes(minutes));
-
 		return builder.toString();
 	}
 
